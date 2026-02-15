@@ -17,6 +17,9 @@ A production-ready Go HTTP client library for OGC WMS 1.3.0 and WFS 2.0.0 servic
   - GetPropertyValue
   - Transactions (Insert, Update, Delete)
 
+- **WCS Support**
+  - Longitudinal terrain profile sampling along WGS84 lines
+
 - **Additional Features**
   - OGC Filter Encoding / CQL support
   - GeoJSON types and GML conversion
