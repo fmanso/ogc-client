@@ -137,6 +137,27 @@ func TestClientWFS(t *testing.T) {
 	})
 }
 
+func TestClientWCS(t *testing.T) {
+	client, err := NewClient("http://localhost:8080/geoserver")
+	if err != nil {
+		t.Fatalf("NewClient() error = %v", err)
+	}
+
+	t.Run("global endpoint", func(t *testing.T) {
+		wcs := client.WCS("")
+		if wcs == nil {
+			t.Error("WCS() returned nil")
+		}
+	})
+
+	t.Run("workspace endpoint", func(t *testing.T) {
+		wcs := client.WCS("myworkspace")
+		if wcs == nil {
+			t.Error("WCS() returned nil")
+		}
+	})
+}
+
 func TestClientBaseURL(t *testing.T) {
 	client, err := NewClient("http://localhost:8080/geoserver/")
 	if err != nil {

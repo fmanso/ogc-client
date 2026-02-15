@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/fmanso/ogc-client/wfs"
+	"github.com/fmanso/ogc-client/wcs"
 	"github.com/fmanso/ogc-client/wms"
 )
 
@@ -103,6 +104,13 @@ func (c *Client) WMS(workspace string) *wms.Client {
 func (c *Client) WFS(workspace string) *wfs.Client {
 	endpoint := c.buildServiceURL(workspace, "wfs")
 	return wfs.NewClient(endpoint, c.httpClient, c.wrapAuth(), c.userAgent)
+}
+
+// WCS returns a WCS client for the specified workspace.
+// If workspace is empty, the global WCS endpoint is used.
+func (c *Client) WCS(workspace string) *wcs.Client {
+	endpoint := c.buildServiceURL(workspace, "wcs")
+	return wcs.NewClient(endpoint, c.httpClient, c.wrapAuth(), c.userAgent)
 }
 
 // buildServiceURL constructs the service endpoint URL.
