@@ -63,7 +63,10 @@ func TestLongitudinalProfile(t *testing.T) {
 	if profile[2].Y != 100 {
 		t.Errorf("expected last elevation 100, got %f", profile[2].Y)
 	}
-	if profile[2].X <= 111000 || profile[2].X >= 112500 {
+	// 1 degree of longitude at the equator is ~111.2 km.
+	const minExpectedMeters = 111000.0
+	const maxExpectedMeters = 112500.0
+	if profile[2].X <= minExpectedMeters || profile[2].X >= maxExpectedMeters {
 		t.Errorf("unexpected total distance %f", profile[2].X)
 	}
 }

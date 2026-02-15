@@ -87,7 +87,6 @@ func (c *Client) getElevation(ctx context.Context, coverageID string, lon, lat f
 		Param("VERSION", Version).
 		Param("REQUEST", "GetCoverage").
 		Param("COVERAGE", coverageID).
-		Param("COVERAGEID", coverageID).
 		Param("CRS", "EPSG:4326").
 		Param("BBOX", fmt.Sprintf("%.8f,%.8f,%.8f,%.8f", lon, lat, lon, lat)).
 		Param("WIDTH", "1").
@@ -150,6 +149,7 @@ func pointAtDistance(line []Point, cumulative []float64, distance float64) (lon 
 }
 
 func haversineMeters(a, b Point) float64 {
+	// IUGG mean Earth radius in meters.
 	const earthRadiusMeters = 6371008.8
 	lat1 := a.Lat * math.Pi / 180
 	lat2 := b.Lat * math.Pi / 180
